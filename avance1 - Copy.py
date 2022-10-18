@@ -1,11 +1,3 @@
-"""
-Programa que simula un juego de lotería
-Entradas: Elegir modo de juego
-Salida: Dos tablas que se vayan llenando cada vez que se saque un número
-
-Andreas Haidacher Delgado
-A00837978
-"""
 import random
 import time
 
@@ -122,7 +114,7 @@ def WinnerWinnerChickenDinner(gamemode, player1, player2):
     if gamemode == "F":
         for row in range(4): #I check every row and column so --> [row][column] and [column][row] Winner 1
             if status1[row][0] == vdd and status1[row][1] == vdd and status1[row][2] == vdd and status1[row][3] == vdd:
-                if status2[0][row] == vdd and status2[1][row] == vdd and status2[2][row] == vdd and status2[3][row] == vdd:
+                if status1[0][row] == vdd and status1[1][row] == vdd and status1[2][row] == vdd and status1[3][row] == vdd:
                     nummer =+ 1
             if nummer == 4:
                 winner1 = vdd
@@ -180,7 +172,7 @@ def printTable(player1, player2):
     print(f" {table1[0][0]}   {table1[0][1]}   {table1[0][2]}   {table1[0][3]}  ||  {table2[0][0]}   {table2[0][1]}   {table2[0][2]}   {table2[0][3]}")
     print(f" {table1[1][0]}   {table1[1][1]}   {table1[1][2]}   {table1[1][3]}  ||  {table2[1][0]}   {table2[1][1]}   {table2[1][2]}   {table2[1][3]}")
     print(f" {table1[2][0]}   {table1[2][1]}   {table1[2][2]}   {table1[2][3]}  ||  {table2[2][0]}   {table2[2][1]}   {table2[2][2]}   {table2[2][3]}")
-    print(f" {table1[3][0]}   {table1[3][1]}   {table1[3][2]}   {table1[3][3]}  ||  {table2[3][0]}   {table2[3][1]}   {table2[3][2]}   {table2[3][3]}")
+    print(f" {table1[3][0]}   {table1[3][1]}   {table1[3][2]}   {table1[3][3]}  ||  {table2[3][0]}   {table2[3][1]}   {table2[3][2]}   {table2[3][3]}\n")
 
 def main():
     vdd = True
@@ -196,7 +188,7 @@ def main():
         picked_num = randNum()
         printTable(player1, player2)
         winner = WinnerWinnerChickenDinner(gamemode, player1, player2)
-        print(winner)
+        
         doesItExist(picked_num, player1, player2)
         print('Called number is',picked_num)
         printTable(player1, player2)
@@ -206,11 +198,10 @@ def main():
         if winner[0] == True:
             print("¡Player1, thou shall be named WINNER!")
             partyTime_untz_untz = False
-        elif winner[1] == False:
+        elif winner[1] == True:
             print("¡Player2, thou shall be named WINNER!")
-        elif winner[0] == True and winner[1] == True:
-            print("Blimey, it seems we've got a tie. I hope this doesn't call for a fight...")
+            partyTime_untz_untz = False
         else:
-            play_again = input("Press ENTER to play again!")
+            play_again = input("Press ENTER to roll another number!")
                 
 main()
